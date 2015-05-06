@@ -112,3 +112,7 @@ Estructura basada en el REGLAMENTO (CE) No 1360/2002 DE LA COMISIÓN de 13 de ju
   con el formato:
   Tag-longitud-value=FID-tamaño-datos
   
+  La dependencias del proyecto seran tres para poder pasar de una clase java a json:
+  -jackson-core-2.5.1.jar
+  -jackson-databind-2.5.1.jar
+  -jackson-annotations-2.5.1.jar

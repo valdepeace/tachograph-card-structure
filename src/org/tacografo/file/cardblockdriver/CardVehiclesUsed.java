@@ -47,7 +47,6 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 		this.vehiclePointerNewestRecord=Number.getShort_16(Arrays.copyOfRange(datos,start , start+=Sizes.VEHICLEPOINTERNEWESTRECORD.getMax()));
 		//this.vehiclePointerNewestRecord+=-1;		
 		this.cardVehicleRecords=new ArrayList<CardVehicleRecord>();
-		this.setListaCardVehicleRecords();
 		
 	}
 	

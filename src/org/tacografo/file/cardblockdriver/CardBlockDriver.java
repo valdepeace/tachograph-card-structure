@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package org.tacografo.file.cardblockdriver;
 
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Clase abstracta de los bloques de datos de un fichero de conductor. Todo bloque de datos se resumen
  * en tag(fid)-logitud(size)-value(datos)
- *
+ *  
  * @author Andrés Carmona Gil
  * @version 0.0.1
  *
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME,
 include=JsonTypeInfo.As.PROPERTY,
 property="type")
-@JsonSubTypes({
+@JsonSubTypes({	
 @Type(value=CardIccIdentification.class, name="icc"),
 @Type(value=CardChipIdentification.class, name="ic"),
 @Type(value=DriverCardApplicationIdentification.class, name="application_identification"),
@@ -42,15 +42,16 @@ property="type")
 @Type(value= SpecificConditionRecord.class, name="specific_conditions")
 
 })
+
 public abstract class CardBlockDriver {
-
-
-	private String FID;
-	private int size;
+	
+	
+	private String FID;	
+	private int size;			
 	@JsonIgnore
 	private byte[] datos;
 
-	/**
+	/** 
 	 *  Identificador del bloque segun definido en REGLAMENTO (CE) No 1360/2002 DE LA COMISIÓN
 	 * de 13 de junio de 2002 hoja "L 207/119"
 	 * @return the fID
@@ -103,7 +104,7 @@ public abstract class CardBlockDriver {
 	public void setDatos(byte[] datos) {
 		this.datos = datos;
 	}
-
+	
 	/**
 	 * Imprime por consola los datos en binario usado para el debug
 	 */
@@ -114,7 +115,7 @@ public abstract class CardBlockDriver {
 			System.out.println(s);
 		}
 		//String s = String.format("%8s", Integer.toBinaryString(bite [0] & 0xFF)).replace(' ', '0');
-
+		
 	}
 	/**
 	 * Imprime por consola los datos en hexadecimal usado para el debug
@@ -133,11 +134,11 @@ public abstract class CardBlockDriver {
 		String str="";
 		try {
 			str=mapper.writeValueAsString(this);
-		} catch (JsonProcessingException e) {
+		} catch (JsonProcessingException e) {			
 			e.printStackTrace();
-		}
+		}		
 		return str;
 	}
-
-
+	
+	
 }

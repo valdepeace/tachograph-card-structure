@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.tacografo.file.cardblockdriver.*;
 import org.tacografo.file.error.ErrorFile;
@@ -41,7 +40,7 @@ public class FileTGD {
 	/**
 	 * Listado de <key,value> donde key=fid, value=cardBlock
 	 */
-	private Map<String, CardBlock> lista_bloque;
+	private HashMap<String, CardBlock> lista_bloque;
 
 	public FileTGD() {
 
@@ -72,7 +71,7 @@ public class FileTGD {
 		this.nameFile=filename;
 		this.lista_bloque = new HashMap();
 		factorizar_bloques(is, sizeFile);
-		
+	
 		if (this.getLista_bloque().isEmpty()){
 			throw new ErrorFile("error archivo no tgd");
 		}
@@ -263,7 +262,7 @@ public class FileTGD {
 	 * Devuelve la lista_bloque <fid, cardblock>
 	 * @return the lista_bloque
 	 */
-	public Map<String, CardBlock> getLista_bloque() {
+	public HashMap<String, CardBlock> getLista_bloque() {
 		return lista_bloque;
 	}
 

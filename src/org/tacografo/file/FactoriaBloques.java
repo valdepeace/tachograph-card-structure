@@ -46,7 +46,8 @@ public class FactoriaBloques {
 		CardBlockDriver bloque = null;
 		
 		switch (word) {	
-			case 0x0002:					
+			case 0x0002:	
+				
 				try {
 					bloque=new CardIccIdentification(datos);
 				} catch (IOException e) {				

@@ -71,34 +71,31 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 		byte[] arraybyte;
 		if (this.activityPointerNewestRecord<this.activityPointerOldestDayRecord){			
 			byte[] array1=Arrays.copyOfRange(arrayorigen, this.activityPointerOldestDayRecord, 13776);
-			byte[] array2=Arrays.copyOfRange(arrayorigen, 0, this.activityPointerNewestRecord);	
+			byte[] array2=Arrays.copyOfRange(arrayorigen, 4, this.activityPointerNewestRecord);	
 			arraybyte=new byte[array1.length+array2.length];
 			System.arraycopy(array1, 0, arraybyte, 0, array1.length);
 			System.arraycopy(array2, 0, arraybyte, array1.length-1, array2.length-1);
 			
-			
 		}else{
-			arraybyte=Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord, this.activityPointerNewestRecord-this.activityPointerOldestDayRecord);
+			// hay que quitarle los 4 bytes primeros de activityPointerOldestDayRecord y acitivityPointerNewestRecord
+			arraybyte=Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord+4, this.activityPointerNewestRecord-this.activityPointerOldestDayRecord);	
 			
-		}
-		
+		}	
 		int length=0;
 		int indice=0;
 		CardActivityDailyRecord cadr;
-		this.activityDailyRecords =new ArrayList<CardActivityDailyRecord>();
+		this.activityDailyRecords =new ArrayList<CardActivityDailyRecord>();		
 		while (indice<arraybyte.length){
-			length=Number.getShort_16(Arrays.copyOfRange(arraybyte,indice+2, indice+5));
-			if (length>=0){
-				
-				byte[] arrayfrom=Arrays.copyOfRange(arraybyte,indice, indice+=length);			
+			length=Number.getShort_16(Arrays.copyOfRange(arraybyte,indice+2, indice+5));			
+			if (length>=0){				
+				byte[] arrayfrom=Arrays.copyOfRange(arraybyte,indice, indice+=length);				
 				cadr=new CardActivityDailyRecord(arrayfrom);
 				this.activityDailyRecords.add(cadr);
+				System.out.println(cadr.toString());
 			}else{
 				indice=arraybyte.length+1;
 			}
-		}
-		
-		
+		}	
 	}
 
 	/**

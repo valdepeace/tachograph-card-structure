@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.tacografo.file.cardblockdriver.Sizes;
 import org.tacografo.tiposdatos.RealTime;
 import org.tacografo.tiposdatos.Number;
 
@@ -69,17 +70,16 @@ public class CardActivityDailyRecord {
 	 */
 	public CardActivityDailyRecord(byte[] bytes){
 		int start=0;
-		this.activityPreviousRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=2));
-		this.activityRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=2));
-		this.activityRecordDate = RealTime.getRealTime(Arrays.copyOfRange(bytes, start, start+=4));
+		this.activityPreviousRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYPREVIUSRECORDLENGTH.getMax()));
+		this.activityRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDLENGTH.getMax()));
+		this.activityRecordDate = RealTime.getRealTime(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDDATE.getMax()));
 		//DailyPresenceCounter adpc=new DailyPresenceCounter(Arrays.copyOfRange(bytes, start, start+=2));
-		this.activityDailyPresenceCounter = Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=2));	
+		this.activityDailyPresenceCounter = Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYDAILYPRESENCECOUNTER.getMax()));	
 		//Distance d=new Distance(Arrays.copyOfRange(bytes, start, start+=2));
-		this.activityDayDistance=Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=2));	
+		this.activityDayDistance=Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYDAYDISTANCE.getMax()));	
 		this.activityChangeInfo=new ArrayList<ActivityChangeInfo>();
 		for (int i=start; i<this.activityRecordLength;i+=2){
-			ActivityChangeInfo activityChangeInfo=new ActivityChangeInfo(Arrays.copyOfRange(bytes, start, start+=2));
-			
+			ActivityChangeInfo activityChangeInfo=new ActivityChangeInfo(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYCHANGEINFO.getMin()));			
 			this.activityChangeInfo.add(activityChangeInfo);
 		}
 				

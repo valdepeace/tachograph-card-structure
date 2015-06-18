@@ -45,6 +45,8 @@ public class CardPlaceDailyWorkPeriod extends CardBlockDriver implements
 		this.placePointerNewestRecord=(int) Number.getShort_8(Arrays.copyOfRange(datos, start, start+=Sizes.PLACEPOINTERNEWESTRECORD.getMax()));
 		this.placeRecords=new ArrayList<PlaceRecord>();
 		this.datos=datos;
+		this.setListaPlaceRecords();
+		
 	}
 	
 	public void setNoOfCArdPlaceRecords(int noOfCardPlaceRecords){

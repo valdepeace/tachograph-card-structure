@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.tacografo.file.cardblockdriver.CardBlock;
 import org.tacografo.file.cardblockdriver.CardCertificate;
@@ -91,7 +92,7 @@ public class FileBlockTGD {
 	/**
 	 * Listado de <key,value> donde key=fid, value=cardBlock
 	 */
-	private HashMap<String, CardBlock> lista_bloque;
+	private Map<String, CardBlock> lista_bloque;
 
 	public FileBlockTGD() {
 
@@ -167,15 +168,18 @@ public class FileBlockTGD {
 		this.fault_data = (CardFaultData) this.lista_bloque
 				.get(Fid.EF_FAULTS_DATA.toString());
 		this.driver_activity_data = (CardDriverActivity) this.lista_bloque
-				.get(Fid.EF_DRIVER_ACTIVITY_DATA.toString());		
+				.get(Fid.EF_DRIVER_ACTIVITY_DATA.toString());
+		// ****************
 		this.vehicles_used = (CardVehiclesUsed) this.lista_bloque
-				.get(Fid.EF_VEHICLES_USED.toString());
+				.get(Fid.EF_VEHICLES_USED.toString());		
 		this.vehicles_used.setNoOfCardVehicleRecords(this.application_identification.getNoOfCardVehicleRecords().getNoOfCardVehicleRecords());
+		//********************
 		this.places = (CardPlaceDailyWorkPeriod) this.lista_bloque
 				.get(Fid.EF_PLACES.toString());		
 		if (this.places!=null)
 		this.places.setNoOfCArdPlaceRecords(this.application_identification
 				.getNoOfCardPlaceRecords().getNoOfCardPlaceRecords());
+		
 		this.current_usage = (CardCurrentUse) this.lista_bloque
 				.get(Fid.EF_CURRENT_USAGE.toString());
 		this.control_activity_data = (CardControlActivityDataRecord) this.lista_bloque
@@ -599,7 +603,7 @@ public class FileBlockTGD {
 	 * Devuelve la lista_bloque <fid, cardblock>
 	 * @return the lista_bloque
 	 */
-	public HashMap<String, CardBlock> getLista_bloque() {
+	public Map<String, CardBlock> getLista_bloque() {
 		return lista_bloque;
 	}
 

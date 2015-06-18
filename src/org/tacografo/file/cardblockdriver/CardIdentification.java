@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.tacografo.file.cardblockdriver.subblock.CardNumber;
+import org.tacografo.file.cardblockdriver.subblock.DriverCardHolderIdentification;
 import org.tacografo.file.cardblockdriver.subblock.Name;
 import org.tacografo.file.cardblockdriver.subblock.NationNumeric;
 import org.tacografo.tiposdatos.RealTime;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * cardIssueDate TimeReal,
  * cardValidityBegin TimeReal, 
  * cardExpiryDate TimeReal
+ * 
  * }
  *
  * cardIssuingMemberState es el código del Estado miembro que expide la tarjeta.
@@ -52,7 +54,7 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss", timezone="GMT")
 	private Date cardExpiryDate;
 			
-	
+	private DriverCardHolderIdentification driverCardHolderIdentification;
 	
 	
 	public CardIdentification() {}
@@ -83,9 +85,8 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 		
 		this.cardExpiryDate=new Date();
 		this.cardExpiryDate=RealTime.getRealTime(Arrays.copyOfRange(datos,start, start+=Sizes.CARDEXPIRYDATE.getMax()));
-		
-		
-		
+				
+		this.driverCardHolderIdentification= new DriverCardHolderIdentification(Arrays.copyOfRange(datos,start, start+=Sizes.DRIVERCARDHOLDERIDENTIFICATION.getMax()));
 				
 	}
 	
@@ -108,7 +109,8 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 				+ ", cardIssuingAuthorityName=" + cardIssuingAuthorityName
 				+ ", cardIssueDate=" + cardIssueDate + ", cardValidityBegin="
 				+ cardValidityBegin + ", cardExpiryDate=" + cardExpiryDate
-				+ "]";
+				+ ", driverCardHolderIdentification="
+				+ driverCardHolderIdentification + "]";
 	}
 
 	/**
@@ -197,6 +199,21 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 	 */
 	public void setCardExpiryDate(Date cardExpiryDate) {
 		this.cardExpiryDate = cardExpiryDate;
+	}
+
+	/**
+	 * @return the driverCardHolderIdentification
+	 */
+	public DriverCardHolderIdentification getDriverCardHolderIdentification() {
+		return driverCardHolderIdentification;
+	}
+
+	/**
+	 * @param driverCardHolderIdentification the driverCardHolderIdentification to set
+	 */
+	public void setDriverCardHolderIdentification(
+			DriverCardHolderIdentification driverCardHolderIdentification) {
+		this.driverCardHolderIdentification = driverCardHolderIdentification;
 	}
 
 	

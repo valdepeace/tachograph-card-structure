@@ -71,6 +71,7 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 		byte[] arraybyte;
 		if (this.activityPointerNewestRecord<this.activityPointerOldestDayRecord){			
 			byte[] array1=Arrays.copyOfRange(arrayorigen, this.activityPointerOldestDayRecord, 13776);
+			
 			byte[] array2=Arrays.copyOfRange(arrayorigen, 4, this.activityPointerNewestRecord);	
 			arraybyte=new byte[array1.length+array2.length];
 			System.arraycopy(array1, 0, arraybyte, 0, array1.length);
@@ -78,7 +79,7 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 			
 		}else{
 			// hay que quitarle los 4 bytes primeros de activityPointerOldestDayRecord y acitivityPointerNewestRecord
-			arraybyte=Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord+4, this.activityPointerNewestRecord-this.activityPointerOldestDayRecord);	
+			arraybyte=Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord+4, this.activityPointerNewestRecord-this.activityPointerOldestDayRecord+4);	
 			
 		}	
 		int length=0;
@@ -90,8 +91,7 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 			if (length>=0){				
 				byte[] arrayfrom=Arrays.copyOfRange(arraybyte,indice, indice+=length);				
 				cadr=new CardActivityDailyRecord(arrayfrom);
-				this.activityDailyRecords.add(cadr);
-				System.out.println(cadr.toString());
+				this.activityDailyRecords.add(cadr);				
 			}else{
 				indice=arraybyte.length+1;
 			}

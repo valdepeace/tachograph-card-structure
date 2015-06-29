@@ -85,8 +85,9 @@ public class ActivityChangeInfo {
 				
 		
 		String s1 = String.format("%8s", Integer.toBinaryString(bytes[0] & 0xFF)).replace(' ', '0');
-		String s2 = String.format("%8s", Integer.toBinaryString(bytes[1] & 0xFF)).replace(' ', '0');
+		String s2 = String.format("%8s", Integer.toBinaryString(bytes[1] & 0xFF)).replace(' ', '0');				
 		String s3=s1+s2;
+		
 		int s,c,p,aa,t;		
 		s=Integer.valueOf(s3.substring(0, 1));
 		c=Integer.valueOf(s3.substring(1, 2));
@@ -116,6 +117,7 @@ public class ActivityChangeInfo {
 			min=t;
 		}
 		this.t=String.valueOf(hora)+":"+String.valueOf(min);
+		
 	}
 
 	

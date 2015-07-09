@@ -69,6 +69,7 @@ public class CardActivityDailyRecord {
 	 * @param bytes
 	 */
 	public CardActivityDailyRecord(byte[] bytes){
+		
 		int start=0;
 		this.activityPreviousRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYPREVIUSRECORDLENGTH.getMax()));
 		this.activityRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDLENGTH.getMax()));

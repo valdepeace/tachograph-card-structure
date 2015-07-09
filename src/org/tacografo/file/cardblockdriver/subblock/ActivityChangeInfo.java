@@ -94,7 +94,7 @@ public class ActivityChangeInfo {
 		p=Integer.valueOf(s3.substring(2, 3));
 		aa=Integer.valueOf(s3.substring(3, 5));
 		t=Short.valueOf(s3.substring(5,16),2);
-		
+	
 		this.s=(s==0)?"conductor":"segundo conductor";
 		if (p==0){
 			this.c=(s==0)?"solitario":"en equipo";

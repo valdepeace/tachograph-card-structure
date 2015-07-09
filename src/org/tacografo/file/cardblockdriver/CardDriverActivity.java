@@ -5,6 +5,7 @@ package org.tacografo.file.cardblockdriver;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.tacografo.file.cardblockdriver.subblock.CardActivityDailyRecord;
 import org.tacografo.tiposdatos.Number;
 
@@ -88,7 +89,7 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 		this.activityDailyRecords =new ArrayList<CardActivityDailyRecord>();		
 		while (indice<arraybyte.length){
 			length=Number.getShort_16(Arrays.copyOfRange(arraybyte,indice+2, indice+5));			
-			if (length>=0){				
+			if (length>0){				
 				byte[] arrayfrom=Arrays.copyOfRange(arraybyte,indice, indice+=length);				
 				cadr=new CardActivityDailyRecord(arrayfrom);
 				this.activityDailyRecords.add(cadr);				

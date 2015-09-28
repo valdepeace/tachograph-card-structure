@@ -72,7 +72,13 @@ public class CardActivityDailyRecord {
 		
 		int start=0;
 		this.activityPreviousRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYPREVIUSRECORDLENGTH.getMax()));
-		this.activityRecordLength= Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDLENGTH.getMax()));
+		int number=Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDLENGTH.getMax()));
+		
+		if (number<0){
+			number=Number.getShort_8(Arrays.copyOfRange(bytes, start, start+Sizes.ACTIVITYRECORDLENGTH.getMax()));
+		}
+		
+		this.activityRecordLength= number;
 		this.activityRecordDate = RealTime.getRealTime(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYRECORDDATE.getMax()));
 		//DailyPresenceCounter adpc=new DailyPresenceCounter(Arrays.copyOfRange(bytes, start, start+=2));
 		this.activityDailyPresenceCounter = Number.getShort_16(Arrays.copyOfRange(bytes, start, start+=Sizes.ACTIVITYDAILYPRESENCECOUNTER.getMax()));	

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.tacografo.file.cardblockdriver.subblock.CardNumber;
+import org.tacografo.file.cardblockdriver.subblock.DriverCardHolderIdentification;
 import org.tacografo.file.cardblockdriver.subblock.Name;
 import org.tacografo.file.cardblockdriver.subblock.NationNumeric;
 import org.tacografo.tiposdatos.RealTime;
@@ -51,6 +52,8 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 	private Date cardValidityBegin;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss", timezone="GMT")
 	private Date cardExpiryDate;
+
+	private DriverCardHolderIdentification driverCardHolderIdentification;
 			
 	
 	
@@ -84,8 +87,7 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 		this.cardExpiryDate=new Date();
 		this.cardExpiryDate=RealTime.getRealTime(Arrays.copyOfRange(datos,start, start+=Sizes.CARDEXPIRYDATE.getMax()));
 		
-		
-		
+		this.driverCardHolderIdentification=new DriverCardHolderIdentification(Arrays.copyOfRange(datos,start,start+=Sizes.DRIVERCARDHOLDERIDENTIFICATION.getMax()));		
 				
 	}
 	
@@ -98,17 +100,12 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 		return cardIssuingMemberState;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "CardIdentification [cardIssuingMemberState="
-				+ cardIssuingMemberState + ", cardNumber=" + cardNumber
-				+ ", cardIssuingAuthorityName=" + cardIssuingAuthorityName
-				+ ", cardIssueDate=" + cardIssueDate + ", cardValidityBegin="
-				+ cardValidityBegin + ", cardExpiryDate=" + cardExpiryDate
-				+ "]";
+		return "CardIdentification [cardIssuingMemberState=" + cardIssuingMemberState + ", cardNumber=" + cardNumber
+				+ ", cardIssuingAuthorityName=" + cardIssuingAuthorityName + ", cardIssueDate=" + cardIssueDate
+				+ ", cardValidityBegin=" + cardValidityBegin + ", cardExpiryDate=" + cardExpiryDate
+				+ ", driverCardHolderIdentification=" + driverCardHolderIdentification + "]";
 	}
 
 	/**
@@ -197,6 +194,14 @@ public class CardIdentification extends CardBlockDriver implements CardBlock{
 	 */
 	public void setCardExpiryDate(Date cardExpiryDate) {
 		this.cardExpiryDate = cardExpiryDate;
+	}
+
+	public DriverCardHolderIdentification getDriverCardHolderIdentification() {
+		return driverCardHolderIdentification;
+	}
+
+	public void setDriverCardHolderIdentification(DriverCardHolderIdentification driverCardHolderIdentification) {
+		this.driverCardHolderIdentification = driverCardHolderIdentification;
 	}
 
 	

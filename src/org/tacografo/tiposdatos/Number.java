@@ -1,5 +1,11 @@
 package org.tacografo.tiposdatos;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /**
  * Clase que devuelve un numero contenido a partir de un array de bytes
  * @author Andres Carmona Gil
@@ -41,12 +47,16 @@ public class Number {
 	 * Obtenemos un short a partir de 2 bytes.
 	 * @param bytes
 	 * @return short
+	 * @throws IOException 
 	 */
-	public static short getShort_16(byte[] bytes){
-		short i=(short) ((bytes[0]<< 8)&0x0000ff00|
-			       (bytes[1]<< 0)&0x000000ff);
-		return i;
+	public static short getShort_16(byte[] bytes) {
+		int i= ((bytes[0]<< 8)&0xff00|
+			       (bytes[1]<< 0)&0x00ff);
+		
+
+		return  (short) i;
 	}
+		
 	/**
 	 * Obtenemos un short a partir de 1 byte.
 	 * @param bytes

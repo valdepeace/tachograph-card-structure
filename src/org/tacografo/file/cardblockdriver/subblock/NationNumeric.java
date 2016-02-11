@@ -124,7 +124,7 @@ public class NationNumeric {
 			case 0x18:cadena="Hungría (18)H,";break;
 			case 0x19:cadena="Croacia (19)H";break;
 			case 0x1a:cadena="Italia (1A)H";break;
-			case 0x1b:cadena="poikl Irlanda (1B)H";break;
+			case 0x1b:cadena="Irlanda (1B)H";break;
 			case 0x1c:cadena="Islandia (1C)H";
 			case 0x1d:cadena=" Kazajistán (1D)H";break;
 			case 0x1e:cadena="Luxemburgo (1E)H";break;
@@ -156,6 +156,68 @@ public class NationNumeric {
 		}
 		
 		return cadena;
+	}
+	public String getCodeAlfa(){
+		String str="";
+		 switch(this.nationNumeric){
+		 case 0x00:str="No hay información disponible (00)H";break;
+			case 0x01:str="at";break; // Ausria
+			case 0x02:str="al";break; //Albania
+			case 0x03:str="ad";break; //Andorra
+			case 0x04:str="am";break; //Armenia
+			case 0x05:str="az";break; //Azerbaiyán
+			case 0x06:str="be";break; //Bélgica
+			case 0x07:str="bg";break; //Bulgaria
+			case 0x08:str="ba";break; //Bosnia y Hercegovina
+			case 0x09:str="by";break; //Bielorrusia
+			case 0x0a:str="ch";break; //Suiza
+			case 0x0b:str="cy";break; //Chipre
+			case 0x0c:str="cz";break; //República Checa
+			case 0x0d:str="de";break; //Alemania
+			case 0x0e:str="dk";break; //Dinamarca
+			case 0x0f:str="es";break; //España
+			case 0x10:str="ee";break; //Estonia
+			case 0x11:str="fr";break; //Francia
+			case 0x12:str="fi";break; //Finlandia
+			case 0x13:str="li";break; //Liechtenstein
+			case 0x14:str="fo";break; //Islas Feroe
+			case 0x15:str="gb";break; //Reino Unido
+			case 0x16:str="ge";break; //Georgia
+			case 0x17:str="gr";break; //Grecia
+			case 0x18:str="hu";break; //Hungría
+			case 0x19:str="hr";break; //Croacia
+			case 0x1a:str="it";break; //Italia
+			case 0x1b:str="ie";break; //Irlanda
+			case 0x1c:str="is";break;//Islandia
+			case 0x1d:str="kz";break; //Kazajistán
+			case 0x1e:str="lu";break; //Luxemburgo
+			case 0x1f:str="lt";break; //Lituania
+			case 0x20:str="lv";break; //Letonia
+			case 0x21:str="mt";break; //Malta
+			case 0x22:str="mc";break; //Monaco
+			case 0x23:str="md";break; //República de Moldavia
+			case 0x24:str="mk";break; //Macedonia
+			case 0x25:str="no";break; //Noruega
+			case 0x26:str="nl";break; //Países Bajos
+			case 0x27:str="pt";break; //Portugal
+			case 0x28:str="pl";break; //Polonia
+			case 0x29:str="ro";break; //Rumania
+			case 0x2a:str="sm";break; //San Marino
+			case 0x2b:str="ru";break; //Federación Rusa
+			case 0x2c:str="se";break; //Suecia
+			case 0x2d:str="sk";break; //Eslovaquia
+			case 0x2e:str="si";break; //Eslovenia
+			case 0x2f:str="tm";break; //Turkmenistán
+			case 0x30:str="tr";break; //Turquía
+			case 0x31:str="ua";break; //Ucrania
+			case 0x32:str="va";break; //Vaticano
+			case 0x33:str="yu";break; //Yugoslavia
+			case (byte) 0xFC:str="RFU (34..FC)H";break;
+			case (byte) 0xfd:str="eu";break; //
+			case (byte) 0xfe:str="Resto de Europa (FE)H";break;
+			case (byte) 0xff:str="Resto del mundo (FF)H";break;
+	    }
+		return str;
 	}
 	
 	

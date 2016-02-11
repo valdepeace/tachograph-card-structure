@@ -87,7 +87,7 @@ public class FileBlockTGD {
 	@JsonIgnore
 	private SpecificConditionRecord specific_conditions = null;
 	
-	
+	private boolean sid=false;
 	/**
 	 * Listado de <key,value> donde key=fid, value=cardBlock
 	 */
@@ -136,6 +136,7 @@ public class FileBlockTGD {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public FileBlockTGD(byte[] bytes) {
 		this.lista_bloque = new HashMap();		
+		
 		this.lista_bloque = factorizar_bloques(bytes);		
 		this.asignarBloques();
 	}
@@ -170,6 +171,7 @@ public class FileBlockTGD {
 				.get(Fid.EF_DRIVER_ACTIVITY_DATA.toString());		
 		this.vehicles_used = (CardVehiclesUsed) this.lista_bloque
 				.get(Fid.EF_VEHICLES_USED.toString());
+		if (this.application_identification!=null)
 		this.vehicles_used.setNoOfCardVehicleRecords(this.application_identification.getNoOfCardVehicleRecords().getNoOfCardVehicleRecords());
 		this.places = (CardPlaceDailyWorkPeriod) this.lista_bloque
 				.get(Fid.EF_PLACES.toString());		
@@ -182,6 +184,7 @@ public class FileBlockTGD {
 				.get(Fid.EF_CONTROL_ACTIVITY_DATA.toString());
 		this.specific_conditions = (SpecificConditionRecord) this.lista_bloque
 				.get(Fid.EF_SPECIFIC_CONDITIONS.toString());
+		
 	}
 	/**
 	 * Lectura de los bloques con formato :tag(fid)-longitud-value
@@ -206,7 +209,7 @@ public class FileBlockTGD {
 				byte tipo = entrada.readByte();
 				Integer longitud = Integer.valueOf(entrada.readChar());
 				byte[] datos = new byte[longitud];
-
+				
 				entrada.read(datos, 0, longitud);
 				// tipo de bloque
 				if (tipo == 0) {
@@ -296,7 +299,8 @@ public class FileBlockTGD {
 	 */
 	private boolean existe_Fid(int fid){
 		Fid[] list_fid=Fid.values();
-		boolean ok=false;				
+		boolean ok=false;	
+		
 		for (int i=0;i<list_fid.length;i++) {
 				if (list_fid[i].getId()==fid){
 					ok=true;
@@ -317,32 +321,42 @@ public class FileBlockTGD {
 		HashMap<String, CardBlock> lista = new HashMap();
 
 		try {
-
-			for (int start = 0; start < bytes.length; start++) {
+			
+			int start=0;
+			while (start < bytes.length) {
 
 				// la lectura tiene que ser con readUnsignedShort debido a que
 				// los fid c108 y c100
 				// los detecta con signo y me los rellenas como ffffc108 y
 				// ffffc100
+				
 				int fid = Number.getShort_16(Arrays.copyOfRange(bytes, start,
 						start += 2));
 				// tipo de archivo 0 = bloque de dato -- 1 = certificado
 				
 				byte tipo = bytes[start];
-				start += 1;
-
+				start += 1;				
+				
 				Integer longitud = (int) Number.getShort_16(Arrays.copyOfRange(
 						bytes, start, start += 2));
-				byte[] datos = new byte[longitud];
-				datos = Arrays.copyOfRange(bytes, start, start += longitud);
-
-				if (tipo == 0) {
-					CardBlock block = FactoriaBloques.getFactoria(fid, datos);
-					if (block != null) {
-						lista.put(block.getFID(), block);
+				if (longitud<0){
+					start=bytes.length;
+				}else{
+					byte[] datos = new byte[longitud];
+					if (start+longitud<=bytes.length){
+						datos = Arrays.copyOfRange(bytes, start, start += longitud);				
+						if (tipo == 0) {
+							CardBlock block = FactoriaBloques.getFactoria(fid, datos);
+							if (block != null) {
+								lista.put(block.getFID(), block);
+							}	
+						}
+					}else{
+						start=bytes.length;
 					}
-
+				
 				}
+				
 			}
 
 		} catch (IOException e) {

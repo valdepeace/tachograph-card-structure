@@ -77,7 +77,7 @@ public class FactoriaBloques {
 				break;
 			case 0x050E:					
 				bloque = new LastCardDownload(datos);
-				bloque.setFID(Fid.EF_CARD_DOWNLOAD.toString());
+				bloque.setFID(Fid.EF_CARD_DOWNLOAD.toString());				
 				break;
 			case 0x0521:
 				bloque=new CardDrivingLicenceInformation(datos);

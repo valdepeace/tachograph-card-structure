@@ -52,7 +52,7 @@ public class Number {
 	public static short getShort_16(byte[] bytes) {
 		int i= ((bytes[0]<< 8)&0xff00|
 			       (bytes[1]<< 0)&0x00ff);
-		//short x=  ((short) (bytes[0] << 8)| bytes[1]));
+		
 
 		return  (short) i;
 	}

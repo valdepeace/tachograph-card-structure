@@ -209,7 +209,7 @@ public class FileBlockTGD {
 				byte tipo = entrada.readByte();
 				Integer longitud = Integer.valueOf(entrada.readChar());
 				byte[] datos = new byte[longitud];
-
+				
 				entrada.read(datos, 0, longitud);
 				// tipo de bloque
 				if (tipo == 0) {
@@ -299,7 +299,8 @@ public class FileBlockTGD {
 	 */
 	private boolean existe_Fid(int fid){
 		Fid[] list_fid=Fid.values();
-		boolean ok=false;				
+		boolean ok=false;	
+		
 		for (int i=0;i<list_fid.length;i++) {
 				if (list_fid[i].getId()==fid){
 					ok=true;

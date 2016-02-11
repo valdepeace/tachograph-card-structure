@@ -60,46 +60,50 @@ public class CardDriverActivity extends CardBlockDriver implements CardBlock {
 	 * segun  el tipo de propiedad.
 	 * @param datos array de bytes
 	 */
-	public CardDriverActivity(byte[] datos){
-		
-		int start=0; // indice del array de byte
+	public CardDriverActivity(byte[] datos) {
+
+		int start = 0; // indice del array de byte
 		byte[] arrayorigen;
-		
-		this.activityPointerOldestDayRecord = (int) Number.getShort_16(Arrays.copyOfRange(datos, start, start+=Sizes.ACTIVITYPOINTEROLDESTADAYRECORD.getMax()));
-		this.activityPointerNewestRecord = (int) Number.getShort_16(Arrays.copyOfRange(datos, start, start+=Sizes.ACTIVITYPOINTERNEWESTRECORD.getMax()));
-		arrayorigen=Arrays.copyOfRange(datos, start, start+=13776);
-		
-		// preparamos array de datos ya que es una grabacion ciclica y cuando llega al final continua al principio
-		// de los datos por lo que el inicio podria estar en medio de los datos 
+
+		this.activityPointerOldestDayRecord = (int) Number
+				.getShort_16(Arrays.copyOfRange(datos, start, start += Sizes.ACTIVITYPOINTEROLDESTADAYRECORD.getMax()));
+		this.activityPointerNewestRecord = (int) Number
+				.getShort_16(Arrays.copyOfRange(datos, start, start += Sizes.ACTIVITYPOINTERNEWESTRECORD.getMax()));
+		arrayorigen = Arrays.copyOfRange(datos, start, start += datos.length);
+
+		// preparamos array de datos ya que es una grabacion ciclica y cuando
+		// llega al final continua al principio
+		// de los datos por lo que el inicio podria estar en medio de los datos
 		byte[] arraybyte;
-		if (this.activityPointerNewestRecord<this.activityPointerOldestDayRecord){			
-			byte[] array1=Arrays.copyOfRange(arrayorigen, this.activityPointerOldestDayRecord, 13776);			
-			byte[] array2=Arrays.copyOfRange(arrayorigen, 0, this.activityPointerNewestRecord);	
-			arraybyte=new byte[array1.length+array2.length];
+		if (this.activityPointerNewestRecord < this.activityPointerOldestDayRecord) {
+			byte[] array1 = Arrays.copyOfRange(arrayorigen, this.activityPointerOldestDayRecord, datos.length-4);
+			byte[] array2 = Arrays.copyOfRange(arrayorigen, 0, this.activityPointerNewestRecord);
+			arraybyte = new byte[array1.length + array2.length];
 			System.arraycopy(array1, 0, arraybyte, 0, array1.length);
-			System.arraycopy(array2, 0, arraybyte, array1.length, array2.length-1);
+			System.arraycopy(array2, 0, arraybyte, array1.length, array2.length - 1);
 			
-			
-		}else{
-			// hay que quitarle los 4 bytes primeros de activityPointerOldestDayRecord y acitivityPointerNewestRecord
-			arraybyte=Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord+4, this.activityPointerNewestRecord+4-this.activityPointerOldestDayRecord+4);	
-			
-		}	
-		int length=0;
-		int indice=0;
-		int lengthprevius=0;
-		CardActivityDailyRecord cadr;
-		this.activityDailyRecords =new ArrayList<CardActivityDailyRecord>();
-		
-		
-		while (indice<arraybyte.length){
-		
-			length=Number.getShort_16(Arrays.copyOfRange(arraybyte,indice+Sizes.ACTIVITYRECORDLENGTH.getMax(), indice+indice+Sizes.ACTIVITYRECORDLENGTH.getMax()+Sizes.ACTIVITYRECORDLENGTH.getMax()));										
-				byte[] arrayfrom=Arrays.copyOfRange(arraybyte,indice, indice+=length);			
-				cadr=new CardActivityDailyRecord(arrayfrom);
-				this.activityDailyRecords.add(cadr);									
+		} else {
+			// hay que quitarle los 4 bytes primeros de
+			// activityPointerOldestDayRecord y acitivityPointerNewestRecord
+			arraybyte = Arrays.copyOfRange(datos, this.activityPointerOldestDayRecord + 4,
+					this.activityPointerNewestRecord + 4 - this.activityPointerOldestDayRecord + 4);
+
 		}
+		int length = 0;
+		int indice = 0;
+
+		CardActivityDailyRecord cadr;
+		this.activityDailyRecords = new ArrayList<CardActivityDailyRecord>();
 		
+		while (indice < arraybyte.length) {
+			length = Number.getShort_16(Arrays.copyOfRange(arraybyte, indice + Sizes.ACTIVITYRECORDLENGTH.getMax(),
+					indice + indice + Sizes.ACTIVITYRECORDLENGTH.getMax() + Sizes.ACTIVITYRECORDLENGTH.getMax()));
+			//System.out.println("length "+length+" indice:"+indice);
+			byte[] arrayfrom = Arrays.copyOfRange(arraybyte, indice, indice += length);
+			cadr = new CardActivityDailyRecord(arrayfrom);
+			this.activityDailyRecords.add(cadr);
+		}
+
 	}
 
 	/**

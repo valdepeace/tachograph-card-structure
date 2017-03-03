@@ -121,3 +121,7 @@ Estructura basada en el REGLAMENTO (CE) No 1360/2002 DE LA COMISIÓN de 13 de ju
   </p>
   <p> <a href="http://tacografojavadoc.valdepeace.com/">javadoc</a> del proyecto.</p>
 
+### Runnable jar
+En la carpeta jar encontraremos el archivo runnable-tgd.jar que es el ejecutable de la app:
+
+ ```java -jar runnable-tgd.jar <path><archivo.TGD/ESM/DDD/C1B```

@@ -10,25 +10,25 @@ import org.tacografo.tiposdatos.Number;
 
 /**
  * 2.31. CardVehiclesUsed
- * Información almacenada en una tarjeta de conductor o en una tarjeta del centro de ensayo y relativa a los vehículos utilizados
+ * Informaciï¿½n almacenada en una tarjeta de conductor o en una tarjeta del centro de ensayo y relativa a los vehï¿½culos utilizados
  * por el titular de la tarjeta (requisitos 197 y 217).
  * CardVehiclesUsed := SEQUENCE {
  * vehiclePointerNewestRecord INTEGER(0..NoOfCardVehicleRecords-1),
  * cardVehicleRecords SET SIZE(NoOfCardVehicleRecords) OF
  * CardVehicleRecord
  * }
- * vehiclePointerNewestRecord es el índice del último registro actualizado de un vehículo.
- * Asignación de valor: número correspondiente al numerador del registro de un vehículo. Al primer registro de la
- * estructura se le asigna el número ¡0¡.
- * cardVehicleRecords es el conjunto de registros con información sobre los vehículos utilizados
+ * vehiclePointerNewestRecord es el ï¿½ndice del ï¿½ltimo registro actualizado de un vehï¿½culo.
+ * Asignaciï¿½n de valor: nï¿½mero correspondiente al numerador del registro de un vehï¿½culo. Al primer registro de la
+ * estructura se le asigna el nï¿½mero ï¿½0ï¿½.
+ * cardVehicleRecords es el conjunto de registros con informaciï¿½n sobre los vehï¿½culos utilizados
  * 
- * @author Andrés Carmona Gil
+ * @author Andrï¿½s Carmona Gil
  * @version 0.0.1
  *
  */
 public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 	
-	private short vehiclePointerNewestRecord;
+	private int vehiclePointerNewestRecord;
 	private ArrayList<CardVehicleRecord> cardVehicleRecords;
 	private int noOfCardVehicleRecords;
 	private byte[] datos;
@@ -58,8 +58,8 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 		this.setListaCardVehicleRecords();
 	}
 	/**
-	 * Rellena array con cardvehiclerecord segun número correspondiente al numerador del registro de un vehículo. Al primer registro de la
-	 * estructura se le asigna el número ¡0¡.
+	 * Rellena array con cardvehiclerecord segun nï¿½mero correspondiente al numerador del registro de un vehï¿½culo. Al primer registro de la
+	 * estructura se le asigna el nï¿½mero ï¿½0ï¿½.
 	 */
 	private void setListaCardVehicleRecords(){
 		
@@ -77,7 +77,7 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 	}
 	
 	/**
-	 * Obtiene el número de registros del vehículo que caben en la tarjeta.
+	 * Obtiene el nï¿½mero de registros del vehï¿½culo que caben en la tarjeta.
 	 * @return the noOfCardVehicleRecords
 	 */
 	public int getNoOfCardVehicleRecords() {
@@ -85,16 +85,16 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 	}
 
 	/**
-	 * Obtiene el índice del último registro actualizado de un vehículo.
+	 * Obtiene el ï¿½ndice del ï¿½ltimo registro actualizado de un vehï¿½culo.
 	 * @return the vehiclePointerNewestRecord
 	 */
-	public short getVehiclePointerNewestRecord() {
+	public int getVehiclePointerNewestRecord() {
 		return vehiclePointerNewestRecord;
 	}
 
 
 	/**
-	 * Asigna el índice del último registro actualizado de un vehículo.
+	 * Asigna el ï¿½ndice del ï¿½ltimo registro actualizado de un vehï¿½culo.
 	 * @param vehiclePointerNewestRecord the vehiclePointerNewestRecord to set
 	 */
 	public void setVehiclePointerNewestRecord(short vehiclePointerNewestRecord) {
@@ -103,7 +103,7 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 
 
 	/**
-	 * Obtiene el conjunto de registros con información sobre los vehículos utilizados.
+	 * Obtiene el conjunto de registros con informaciï¿½n sobre los vehï¿½culos utilizados.
 	 * @return the cardVehicleRecords
 	 */
 	public ArrayList<CardVehicleRecord> getCardVehicleRecords() {
@@ -112,7 +112,7 @@ public class CardVehiclesUsed extends CardBlockDriver implements CardBlock {
 
 
 	/**
-	 * Asigna el conjunto de registros con información sobre los vehículos utilizados.
+	 * Asigna el conjunto de registros con informaciï¿½n sobre los vehï¿½culos utilizados.
 	 * @param cardVehicleRecords the cardVehicleRecords to set
 	 */
 	public void setCardVehicleRecords(

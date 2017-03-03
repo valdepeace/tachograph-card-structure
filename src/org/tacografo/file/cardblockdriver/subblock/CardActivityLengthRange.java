@@ -7,19 +7,19 @@ import org.tacografo.tiposdatos.Number;
 
 /**
  * 2.6. CardActivityLengthRange
- * Número de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
+ * Nï¿½mero de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
  * sobre las actividades del conductor.
  * 
  * CardActivityLengthRange ::= INTEGER(0..2^16-1)
  * 
- * Asignación de valor: min->5544 bytes(28 días, 93 cambios de actividad cada día)
- * 						max->13776 bytes(28 días, 240 cambios de actividad cada día)
+ * Asignaciï¿½n de valor: min->5544 bytes(28 dï¿½as, 93 cambios de actividad cada dï¿½a)
+ * 						max->13776 bytes(28 dï¿½as, 240 cambios de actividad cada dï¿½a)
  * @author Negrero
  *
  */
 public class CardActivityLengthRange {
 	
-	private short cardActivityLengthRange;
+	private int cardActivityLengthRange;
 
 
 	
@@ -36,17 +36,17 @@ public class CardActivityLengthRange {
 
 
 	/**
-	 * Obtiene número de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
+	 * Obtiene nï¿½mero de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
 	 * sobre las actividades del conductor.
 	 * @return the cardActivityLengthRange
 	 */
-	public short getCardActivityLengthRange() {
+	public int getCardActivityLengthRange() {
 		return cardActivityLengthRange;
 	}
 
 
 	/**
-	 * Asigna número de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
+	 * Asigna nï¿½mero de bytes disponibles en una tarjeta de conductor o en una tarjeta del centro de ensayo para almacenar registros
 	 * sobre las actividades del conductor.
 	 * @param cardActivityLengthRange the cardActivityLengthRange to set
 	 */

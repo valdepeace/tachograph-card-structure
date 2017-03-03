@@ -49,12 +49,12 @@ public class Number {
 	 * @return short
 	 * @throws IOException 
 	 */
-	public static short getShort_16(byte[] bytes) {
+	public static int getShort_16(byte[] bytes) {
 		int i= ((bytes[0]<< 8)&0xff00|
 			       (bytes[1]<< 0)&0x00ff);
 		
 
-		return  (short) i;
+		return  i;
 	}
 		
 	/**

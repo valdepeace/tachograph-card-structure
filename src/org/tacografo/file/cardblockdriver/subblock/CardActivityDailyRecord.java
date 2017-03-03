@@ -58,7 +58,7 @@ public class CardActivityDailyRecord {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss", timezone="GMT")
 	private Date activityRecordDate; // 4 byte
 	private int activityDailyPresenceCounter; // 2 size
-	private short activityDayDistance; // 2 size
+	private int activityDayDistance; // 2 size
 	private ArrayList <ActivityChangeInfo> activityChangeInfo; // size 2
 	
 	
@@ -162,7 +162,7 @@ public class CardActivityDailyRecord {
 	 * Obtiene la distancia total recorrida ese d�a.
 	 * @return the activityDayDistance
 	 */
-	public short getActivityDayDistance() {
+	public int getActivityDayDistance() {
 		return activityDayDistance;
 	}
 

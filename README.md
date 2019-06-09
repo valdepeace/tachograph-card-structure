@@ -1,3 +1,5 @@
+## **This project is stopped** because it was moved to [tachogra-structure](https://github.com/Negrero/tachograph-structure)
+Parse file of vu and card to json
 # tachograph-card-structure
 
 
